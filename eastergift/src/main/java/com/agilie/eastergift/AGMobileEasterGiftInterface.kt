@@ -1,6 +1,8 @@
 package com.agilie.eastergift
 
+import android.content.Context
+
 
 interface AGMobileEasterGiftInterface {
-    fun show()
+    fun show(contex: Context)
 }
