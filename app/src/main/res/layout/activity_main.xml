@@ -9,27 +9,27 @@
 
     <Button
         android:id="@+id/showRabbit"
-        android:text="show rabbit"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="95dp" />
+        android:layout_marginTop="95dp"
+        android:text="show rabbit" />
 
     <Button
-        android:text="show lady-bug"
         android:id="@+id/showLadyBug"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/showRabbit"
         android:layout_below="@+id/showRabbit"
-        android:layout_alignStart="@+id/showRabbit" />
+        android:text="show lady-bug" />
 
     <Button
-        android:text="show fox"
         android:id="@+id/showFox"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/showLadyBug"
         android:layout_below="@+id/showLadyBug"
-        android:layout_alignEnd="@+id/showLadyBug" />
+        android:text="show fox" />
 
 </RelativeLayout>

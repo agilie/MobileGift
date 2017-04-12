@@ -3,6 +3,7 @@ package com.agilie.eastergift
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.os.IBinder
 import android.view.WindowManager
 import android.graphics.PixelFormat
@@ -31,7 +32,10 @@ class GiftService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         resourceId = intent?.getIntExtra(RES_ID, 0)!!
 
-        setGifAnimation(resourceId)
+        try {
+            setGifAnimation(resourceId)
+        } catch (e: Exception) {
+        }
 
         return super.onStartCommand(intent, flags, startId)
     }
@@ -50,9 +54,9 @@ class GiftService : Service() {
     }
 
     private fun setGifAnimation(gifResId: Int) {
+
         val gif = GifDrawable(resources, gifResId)
         gif.addAnimationListener { stopSelf() }
-
         gifImageView?.setImageDrawable(gif)
 
         val params = WindowManager.LayoutParams(
