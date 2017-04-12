@@ -3,12 +3,10 @@ package com.agilie.eastergift
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
-import android.os.IBinder
-import android.view.WindowManager
 import android.graphics.PixelFormat
-import android.util.Log
+import android.os.IBinder
 import android.view.Gravity
+import android.view.WindowManager
 import pl.droidsonroids.gif.GifDrawable
 import pl.droidsonroids.gif.GifImageView
 
