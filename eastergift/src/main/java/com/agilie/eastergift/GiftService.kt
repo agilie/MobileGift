@@ -67,15 +67,26 @@ class GiftService : Service() {
         params.x = 0
         params.y = 0
 
-
-        windowManager?.addView(gifImageView, params)
-
+        if (gifImageView?.windowToken != null) {
+            Log.d("TAG", "remove")
+            removeGifView()
+        } else {
+            windowManager?.addView(gifImageView, params)
+        }
     }
 
     override fun onDestroy() {
+        Log.d("TAG", "onDestroy")
         super.onDestroy()
+        removeGifView()
+    }
+
+
+    private fun removeGifView() {
         windowManager?.removeView(gifImageView)
     }
+
+
 }
 
 
