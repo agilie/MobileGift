@@ -4,5 +4,5 @@ import android.content.Context
 
 
 interface AGMobileEasterGiftInterface {
-    fun show(contex: Context)
+    fun show(context: Context, id: Int)
 }

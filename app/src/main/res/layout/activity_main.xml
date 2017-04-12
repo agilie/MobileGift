@@ -7,15 +7,6 @@
     tools:context="com.agilie.mobileeastergift.MainActivity">
 
 
-
-<pl.droidsonroids.gif.GifImageView
-    android:id="@+id/rabbitView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentEnd="true"
-     />
-
     <Button
         android:id="@+id/showRabbit"
         android:text="show rabbit"

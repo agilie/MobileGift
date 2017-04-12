@@ -6,30 +6,57 @@ import android.content.Intent
 import android.os.IBinder
 import android.view.WindowManager
 import android.graphics.PixelFormat
+import android.util.Log
 import android.view.Gravity
+import pl.droidsonroids.gif.GifDrawable
 import pl.droidsonroids.gif.GifImageView
-import org.jetbrains.anko.windowManager
 
 
 class GiftService : Service() {
 
 
-    override fun onBind(intent: Intent?): IBinder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    companion object {
+        val RES_ID = "RES_ID"
     }
+
+    private var windowManager: WindowManager? = null
+    private var gifImageView: GifImageView? = null
+    private var resourceId: Int = 0
+
+    override fun onBind(intent: Intent?): IBinder? {
+        return null
+    }
+
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        resourceId = intent?.getIntExtra(RES_ID, 0)!!
+
+        setGifAnimation(resourceId)
+
+        return super.onStartCommand(intent, flags, startId)
+    }
+
 
     override fun onCreate() {
         super.onCreate()
+        init()
 
-        var windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    }
 
-        val gifImageView = GifImageView(applicationContext)
-        //val gifView = (applicationContext as Activity).findViewById(R.id.text) as GifImageView
 
-        //gifImageView.setImageBitmap(bitmap)
+    private fun init() {
+        windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        gifImageView = GifImageView(applicationContext)
+    }
 
+    private fun setGifAnimation(gifResId: Int) {
+        val gif = GifDrawable(resources, gifResId)
+        gif.addAnimationListener { stopSelf() }
+
+        gifImageView?.setImageDrawable(gif)
 
         val params = WindowManager.LayoutParams(
+
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.TYPE_PHONE,
@@ -38,14 +65,17 @@ class GiftService : Service() {
 
         params.gravity = Gravity.TOP or Gravity.LEFT
         params.x = 0
-        params.y = 100
-        windowManager.addView(gifImageView, params)
+        params.y = 0
 
+
+        windowManager?.addView(gifImageView, params)
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        //   windowManager.removeView(gifImageView)
+        windowManager?.removeView(gifImageView)
     }
 }
+
+

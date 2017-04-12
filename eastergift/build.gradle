@@ -30,13 +30,14 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
-
-    compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    //Gif Animation
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
+    //Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
+    //Anko
     compile 'org.jetbrains.anko:anko-sdk15:0.9.1' // sdk19, sdk21, sdk23 are also available
     compile 'org.jetbrains.anko:anko-support-v4:0.9.1' // In case you need support-v4 bindings
     compile 'org.jetbrains.anko:anko-appcompat-v7:0.9.1' // For appcompat-v7 bindings
