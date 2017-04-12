@@ -31,7 +31,10 @@ class GiftService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         resourceId = intent?.getIntExtra(RES_ID, 0)!!
-        setGifAnimation(resourceId)
+        try {
+            setGifAnimation(resourceId)
+        } catch (e: Exception) {
+        }
 
         return super.onStartCommand(intent, flags, startId)
     }
