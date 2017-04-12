@@ -68,7 +68,6 @@ class GiftService : Service() {
         params.y = 0
 
         if (gifImageView?.windowToken != null) {
-            Log.d("TAG", "remove")
             removeGifView()
         } else {
             windowManager?.addView(gifImageView, params)
@@ -76,7 +75,6 @@ class GiftService : Service() {
     }
 
     override fun onDestroy() {
-        Log.d("TAG", "onDestroy")
         super.onDestroy()
         removeGifView()
     }
