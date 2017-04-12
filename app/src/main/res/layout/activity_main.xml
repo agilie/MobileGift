@@ -17,8 +17,8 @@
         android:layout_marginTop="95dp" />
 
     <Button
-        android:text="show bird"
-        android:id="@+id/showBird"
+        android:text="show lady-bug"
+        android:id="@+id/showLadyBug"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/showRabbit"
@@ -29,7 +29,7 @@
         android:id="@+id/showFox"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/showBird"
-        android:layout_alignEnd="@+id/showBird" />
+        android:layout_below="@+id/showLadyBug"
+        android:layout_alignEnd="@+id/showLadyBug" />
 
 </RelativeLayout>

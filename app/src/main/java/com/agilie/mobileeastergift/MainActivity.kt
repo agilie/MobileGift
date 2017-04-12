@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
 
         val aglMobile = AGMobileEasterGiftInterfaceImpl()
 
-        showBird.setOnClickListener {
-            aglMobile.show(this, R.drawable.bird)
+        showLadyBug.setOnClickListener {
+            aglMobile.show(this, R.drawable.lady_bug)
         }
 
         showFox.setOnClickListener {
