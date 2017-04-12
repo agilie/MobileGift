@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.agilie.eastergift.AGMobileEasterGiftInterfaceImpl
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.onClick
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,18 +15,9 @@ class MainActivity : AppCompatActivity() {
 
         val aglMobile = AGMobileEasterGiftInterfaceImpl()
 
-        showLadyBug.setOnClickListener {
-            aglMobile.show(this, R.drawable.lady_bug)
-        }
-
-        showFox.setOnClickListener {
-            aglMobile.show(this, R.drawable.fox)
-        }
-
-        showRabbit.setOnClickListener {
-            aglMobile.show(this, R.drawable.rabbit)
-        }
-
+        showLadyBug.onClick { aglMobile.show(this, R.drawable.lady_bug) }
+        showFox.onClick { aglMobile.show(this, R.drawable.fox) }
+        showRabbit.onClick { aglMobile.show(this, R.drawable.rabbit)}
     }
 
 }
