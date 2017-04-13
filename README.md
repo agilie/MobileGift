@@ -41,4 +41,4 @@ This library is open-sourced by [Agilie Team](https://www.agilie.com)
 
 ## License
 
-AGMobileGift is available under the MIT license. See the LICENSE file for more info.
+AGMobileGift is available under the [MIT](https://github.com/agilie/AGMobileGift/blob/dev/LICENSE.txt) license.
