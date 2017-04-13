@@ -1,4 +1,4 @@
-package com.agilie.eastergift;
+package com.agilie.agmobilegiftinterface;
 
 import org.junit.Test;
 
