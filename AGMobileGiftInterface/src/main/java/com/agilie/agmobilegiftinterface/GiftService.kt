@@ -1,14 +1,13 @@
-package com.agilie.eastergift
+package com.agilie.agmobilegiftinterface
 
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.os.IBinder
-import android.view.WindowManager
 import android.graphics.PixelFormat
-import android.util.Log
+import android.os.IBinder
 import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
 import android.view.WindowManager.LayoutParams.TYPE_TOAST
 import pl.droidsonroids.gif.GifDrawable
@@ -25,8 +24,10 @@ class GiftService : Service() {
     private var gifImageView: GifImageView? = null
     private var resourceId: Int = 0
 
-    override fun onBind(intent: Intent?): IBinder? {
-        return null
+    override fun onCreate() {
+        super.onCreate()
+
+        init()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -34,15 +35,20 @@ class GiftService : Service() {
         try {
             setGifAnimation(resourceId)
         } catch (e: Exception) {
+            e.printStackTrace()
         }
 
         return super.onStartCommand(intent, flags, startId)
     }
 
-    override fun onCreate() {
-        super.onCreate()
+    override fun onDestroy() {
+        removeGifView()
 
-        init()
+        super.onDestroy()
+    }
+
+    override fun onBind(intent: Intent?): IBinder? {
+        return null
     }
 
     private fun init() {
@@ -53,7 +59,6 @@ class GiftService : Service() {
     private fun setGifAnimation(gifResId: Int) {
         val gif = GifDrawable(resources, gifResId)
         gif.addAnimationListener { stopSelf() }
-
         gifImageView?.setImageDrawable(gif)
 
         with(WindowManager.LayoutParams(
@@ -69,12 +74,6 @@ class GiftService : Service() {
 
             gifImageView?.windowToken?.apply { removeGifView() } ?: windowManager?.addView(gifImageView, this)
         }
-    }
-
-    override fun onDestroy() {
-        removeGifView()
-
-        super.onDestroy()
     }
 
     private fun removeGifView() {

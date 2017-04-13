@@ -1,1 +1,1 @@
-include ':app', ':eastergift'
+include ':app', ':AGMobileGiftInterface'

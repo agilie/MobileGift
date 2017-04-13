@@ -32,5 +32,5 @@ dependencies {
     //Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //Animation
-    compile project(':eastergift')
+    compile project(':AGMobileGiftInterface')
 }
