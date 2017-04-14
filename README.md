@@ -1,6 +1,6 @@
 # AGMobileGift
 
-The developers of Agilie team would like to offer you our new lightweight open-source library called AGMobileGiftInterface. 
+[Agilie Team](https://agilie.com/en/ios-development-services) would like to offer you our new lightweight open-source library called AGMobileGiftInterface. 
 This library simplifies interaction with GIF images and can be easily integrated into your project.
 
 When can you use AGMobileGift?
