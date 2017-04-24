@@ -3,10 +3,12 @@ package com.agilie.mobileeastergift
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.agilie.agmobilegiftinterface.AGMobileGiftInterfaceImpl
+import com.agilie.agmobilegiftinterface.builder.ShakeBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,8 +19,12 @@ class MainActivity : AppCompatActivity() {
         showFox.setOnClickListener { giftInterfaceImpl.show(this, R.drawable.fox) }
         showRabbit.setOnClickListener { giftInterfaceImpl.show(this, R.drawable.rabbit) }
 
-        giftInterfaceImpl.shake(this)
-
+        var d = ShakeBuilder.Builder(showLadyBug)
+                .setDuration(1000)
+                .setTranslation("translationY")
+                .setActivity(this)
+                .build()
+        button.setOnClickListener { d.shakeMyActivity() }
 
     }
 }
