@@ -30,8 +30,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+
     // AGMobileGift
   //  compile 'com.agilie.agmobilegift:AGMobileGiftInterface:0.0.1'
     compile project(':AGMobileGiftInterface')
+
 
 }
