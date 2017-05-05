@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.agilie.agmobilegiftinterface.gravity.physics.Physics2dRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/physics_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -22,23 +24,22 @@
         android:layout_below="@+id/showRabbit"
         android:text="show lady-bug" />
 
-     <Button
-         android:id="@+id/showFox"
-         android:layout_width="240dp"
-         android:layout_height="wrap_content"
-         android:layout_alignEnd="@+id/showLadyBug"
-         android:layout_below="@+id/showLadyBug"
-         android:text="show fox" />
+    <Button
+        android:id="@+id/showFox"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/showLadyBug"
+        android:layout_below="@+id/showLadyBug"
+        android:text="show fox" />
 
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="21dp" />
+        android:layout_marginBottom="21dp"
+        android:text="Button" />
 
-
-</RelativeLayout>
+</com.agilie.agmobilegiftinterface.gravity.physics.Physics2dRelativeLayout>
