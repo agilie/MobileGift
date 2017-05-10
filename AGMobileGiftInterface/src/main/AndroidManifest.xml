@@ -9,7 +9,7 @@
         android:supportsRtl="true">
 
         <service
-            android:name="com.agilie.agmobilegiftinterface.GiftService"
+            android:name="com.agilie.agmobilegiftinterface.animation.GiftService"
             android:enabled="true"
             android:exported="true">
 

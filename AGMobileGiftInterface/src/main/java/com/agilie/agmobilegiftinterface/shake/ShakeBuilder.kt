@@ -1,4 +1,4 @@
-package com.agilie.agmobilegiftinterface.builder
+package com.agilie.agmobilegiftinterface.shake
 
 import android.R
 import android.animation.AnimatorSet

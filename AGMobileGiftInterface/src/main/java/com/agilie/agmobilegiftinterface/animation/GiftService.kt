@@ -1,4 +1,4 @@
-package com.agilie.agmobilegiftinterface
+package com.agilie.agmobilegiftinterface.animation
 
 import android.app.Service
 import android.content.Context
