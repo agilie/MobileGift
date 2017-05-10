@@ -78,53 +78,55 @@ class Physics2d {
         val boxWidth = pixelsToMeters(width)
         val boxHeight = pixelsToMeters(boundSize)
         val fixtureDef = createFixtureDef(boxWidth, boxHeight)
-
         val bodyDef = BodyDef()
-        bodyDef.type = BodyType.STATIC
+                .apply {
+                    type = BodyType.STATIC
+                    position.set(0f, -boxHeight)
+                }
 
-        bodyDef.position.set(0f, -boxHeight)
-        val topWall = world!!.createBody(bodyDef)
-        topWall.createFixture(fixtureDef)
-        bodies.add(topWall)
+        val topWall = world?.createBody(bodyDef)
+        topWall?.createFixture(fixtureDef)
+        topWall?.let { bodies.add(it) }
 
         bodyDef.position.set(0f, pixelsToMeters(height) + boxHeight)
-        val bottomWall = world!!.createBody(bodyDef)
-        bottomWall.createFixture(fixtureDef)
-        bodies.add(bottomWall)
+        val bottomWall = world?.createBody(bodyDef)
+        bottomWall?.createFixture(fixtureDef)
+        bottomWall?.let { bodies.add(it) }
     }
 
     private fun createLeftAndRightWalls() {
         val boundSize = Math.round(BOUND_SIZE)
         val boxWidth = pixelsToMeters(boundSize)
         val boxHeight = pixelsToMeters(height)
-
         val bodyDef = BodyDef()
-        bodyDef.type = BodyType.STATIC
-
+                .apply {
+                    position.set(-boxWidth, 0f)
+                    type = BodyType.STATIC
+                }
         val fixtureDef = createFixtureDef(boxWidth, boxHeight)
 
-        bodyDef.position.set(-boxWidth, 0f)
-        val leftWall = world!!.createBody(bodyDef)
-        leftWall.createFixture(fixtureDef)
-        bodies.add(leftWall)
+        val leftWall = world?.createBody(bodyDef)
+        leftWall?.createFixture(fixtureDef)
+        leftWall?.let { bodies.add(it) }
 
         bodyDef.position.set(pixelsToMeters(width) + boxWidth, 0f)
-        val rightWall = world!!.createBody(bodyDef)
-        rightWall.createFixture(fixtureDef)
-        bodies.add(rightWall)
+        val rightWall = world?.createBody(bodyDef)
+        rightWall?.createFixture(fixtureDef)
+        rightWall?.let { bodies.add(it) }
     }
 
     private fun createFixtureDef(boxWidth: Float, boxHeight: Float): FixtureDef {
         val box = PolygonShape()
         box.setAsBox(boxWidth, boxHeight)
         val fixtureDef = FixtureDef()
-        fixtureDef.shape = box
-        fixtureDef.density = 1f
+                .apply {
+                    shape = box
+                    density = 1f
+                }
         return fixtureDef
     }
 
     private fun createBody(view: View, oldBody: Any?) {
-
         val bodyDef = createBodyDef()
         bodyDef.position.set(
                 pixelsToMeters(view.x + view.width / 2),

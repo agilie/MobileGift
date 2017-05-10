@@ -13,30 +13,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var layout = physics_layout
-        //  gravitySensor = GravitySensorListener(this)
 
         val giftInterfaceImpl = AGMobileGiftInterfaceImpl()
         showLadyBug.setOnClickListener { giftInterfaceImpl.show(this, R.drawable.lady_bug) }
         showFox.setOnClickListener { giftInterfaceImpl.show(this, R.drawable.fox) }
         showRabbit.setOnClickListener { giftInterfaceImpl.show(this, R.drawable.rabbit) }
 
-        var d = ShakeBuilder.Builder(showLadyBug)
+        var shakeBuilder = ShakeBuilder.Builder(showLadyBug)
                 .setDuration(1000)
                 .setTranslation("translationY")
                 .setActivity(this)
                 .build()
-        button.setOnClickListener { d.shakeMyActivity() }
+        button.setOnClickListener { shakeBuilder.shakeMyActivity() }
 
         giftInterfaceImpl.startGravity(this, layout)
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 }
 
