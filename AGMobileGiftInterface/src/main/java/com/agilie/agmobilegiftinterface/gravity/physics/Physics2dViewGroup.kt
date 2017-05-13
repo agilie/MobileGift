@@ -3,9 +3,10 @@ package com.agilie.agmobilegiftinterface.gravity.physics
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
+import android.view.ViewGroup
 import android.widget.RelativeLayout
 
-class Physics2dRelativeLayout : RelativeLayout {
+class Physics2dViewGroup : ViewGroup {
 
     var physics2d: Physics2d? = null
 
@@ -23,7 +24,6 @@ class Physics2dRelativeLayout : RelativeLayout {
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        super.onLayout(changed, l, t, r, b)
         physics2d?.onLayout()
     }
 
@@ -40,4 +40,5 @@ class Physics2dRelativeLayout : RelativeLayout {
         setWillNotDraw(false)
         physics2d = Physics2d(this)
     }
+
 }

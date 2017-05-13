@@ -23,7 +23,7 @@ class Physics2d {
     private val viewGroup: ViewGroup
     private var world: World? = null
     private val bodies = ArrayList<Body>()
-    private val enablePhysics = true
+    private var enablePhysics = true
     private var density: Float
     private var width = 500
     private var height = 500
@@ -35,10 +35,20 @@ class Physics2d {
         density = viewGroup.resources.displayMetrics.density
     }
 
+    fun enablePhysics() {
+        enablePhysics = true
+    }
+
+    fun disablePhysics(){
+        enablePhysics = false
+        viewGroup.invalidate()
+    }
+
     fun onSizeChanged(width: Int, height: Int) {
         this.width = width
         this.height = height
     }
+
 
     fun onLayout() = initWorld()
 
