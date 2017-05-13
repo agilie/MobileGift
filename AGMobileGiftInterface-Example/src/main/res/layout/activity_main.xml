@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="95dp"
-        android:text="show rabbit" />
+        android:text="show rabbit"/>
 
     <Button
         android:id="@+id/showLadyBug"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/showRabbit"
         android:layout_below="@+id/showRabbit"
-        android:text="show lady-bug" />
+        android:text="show lady-bug"/>
 
     <Button
         android:id="@+id/showFox"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/showLadyBug"
         android:layout_below="@+id/showLadyBug"
-        android:text="show fox" />
+        android:text="show fox"/>
 
 
     <Button
@@ -40,6 +40,15 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="21dp"
-        android:text="Button" />
+        android:text="Button"/>
 
+
+    <Button
+        android:id="@+id/secondActivityNavigation"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_alignStart="@+id/showRabbit"
+        android:layout_below="@id/showFox"
+        android:text="Second Activity"/>
 </com.agilie.agmobilegiftinterface.gravity.physics.Physics2dRelativeLayout>

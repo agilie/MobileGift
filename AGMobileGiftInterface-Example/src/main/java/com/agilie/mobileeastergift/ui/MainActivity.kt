@@ -1,9 +1,10 @@
-package com.agilie.mobileeastergift
+package com.agilie.mobileeastergift.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.agilie.agmobilegiftinterface.AGMobileGiftInterfaceImpl
 import com.agilie.agmobilegiftinterface.shake.ShakeBuilder
+import com.agilie.mobileeastergift.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         showLadyBug.setOnClickListener { giftInterfaceImpl.show(this, R.drawable.lady_bug) }
         showFox.setOnClickListener { giftInterfaceImpl.show(this, R.drawable.fox) }
         showRabbit.setOnClickListener { giftInterfaceImpl.show(this, R.drawable.rabbit) }
+
+        secondActivityNavigation.setOnClickListener { startActivity(SecondTestActivity.getCallingIntent(this)) }
 
         var shakeBuilder = ShakeBuilder.Builder(showLadyBug)
                 .setDuration(1000)

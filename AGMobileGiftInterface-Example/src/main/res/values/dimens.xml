@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="image_margin_start">10dp</dimen>
+    <dimen name="menu_name_margin_start">40dp</dimen>
+    <dimen name="concrete_text_margin_end">35dp</dimen>
+    <dimen name="concrete_time_margin_end">15dp</dimen>
+
+    <dimen name="horizontal_divider_height">1dp</dimen>
+
+
+    <dimen name="down_menu_horizontal_scroll_view_margin_top">70dp</dimen>
+    <dimen name="down_menu_width">100dp</dimen>
+    <dimen name="down_menu_height">100dp</dimen>
+
+    <dimen name="down_menu_image_width">40dp</dimen>
+    <dimen name="down_menu_image_height">40dp</dimen>
+    <dimen name="down_menu_image_name_margin_top">10dp</dimen>
+    <dimen name="down_menu_margin_left">15dp</dimen>
+</resources>
