@@ -3,7 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_to"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="60dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imageTo"
@@ -38,4 +41,5 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/image_margin_start"/>
 
-</RelativeLayout>
+</RelativeLayout
+>
