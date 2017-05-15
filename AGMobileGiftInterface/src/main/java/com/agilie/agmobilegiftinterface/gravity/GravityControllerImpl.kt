@@ -1,20 +1,22 @@
 package com.agilie.agmobilegiftinterface.gravity
 
 import android.content.Context
-import android.graphics.Color
+import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.agilie.agmobilegiftinterface.gravity.physics.Physics2dViewGroup
+
 
 /**
  *
  *  Action Flow:
  *  1) Wrap viewGroup with FrameLayout
  *  2) Add PhysicsLayout over the ViewGroup (on the wrapper FrameLayout)
- *  3)
+ *  3) Save all views from all viewGroups
+ *  4) Add all views from all viewGroups to PhysicsLayout
  *
  */
-class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup): GravityController {
+class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : GravityController {
 
     init {
 
@@ -26,6 +28,10 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup): Gra
 
         wrapViewGroup(viewGroup, wrapperFrameLayout)
         wrapperFrameLayout.addView(physicsLayout)
+
+        val viewHashMap = getViewsFromAllViewGroup(viewGroup)
+
+        wrapChildView(viewHashMap, physicsLayout)
     }
 
     override fun stop() {
@@ -57,5 +63,34 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup): Gra
     private fun getPhysics2dViewGroup(context: Context): Physics2dViewGroup {
         val physics2dViewGroup = Physics2dViewGroup(context)
         return physics2dViewGroup
+    }
+
+    private fun getViewsFromAllViewGroup(view: View): HashMap<View, ViewGroup.LayoutParams> {
+        if (view !is ViewGroup) {
+            val hashMap = HashMap<View, ViewGroup.LayoutParams>()
+            view.let { hashMap.put(it, it.layoutParams) }
+            return hashMap
+        }
+
+        val viewsHashMap = HashMap<View, ViewGroup.LayoutParams>()
+
+        (0..view.childCount - 1)
+                .map { view.getChildAt(it) }
+                .forEach {
+                    val hashMap = HashMap<View, ViewGroup.LayoutParams>()
+                    hashMap.putAll(getViewsFromAllViewGroup(it))
+                    viewsHashMap.putAll(hashMap)
+                }
+
+        return viewsHashMap
+    }
+
+    private fun wrapChildView(viewHashMap: HashMap<View, ViewGroup.LayoutParams>,
+                              wrapperViewGroup: ViewGroup) {
+        for ((key) in viewHashMap) {
+            val childParent = key.parent as ViewGroup
+            childParent.removeView(key)
+            wrapperViewGroup.addView(key)
+        }
     }
 }
