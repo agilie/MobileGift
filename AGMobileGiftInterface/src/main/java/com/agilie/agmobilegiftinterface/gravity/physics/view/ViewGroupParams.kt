@@ -31,9 +31,9 @@ class ViewGroupParams {
             left = groupViewLeft
             oldGroupViewX = groupViewX
             oldGroupViewY = groupViewY
-            //x += groupViewX
-            //y += groupViewY
-            Log.d("TAG", "setViewGroupX= " + x + " setViewGroupY= " + y)
+            x = groupViewX
+            y = groupViewY
+            Log.d("TAG", "setViewGroupX= " + groupViewX + " setViewGroupY= " + groupViewY)
         }
 
         val params = oldViewGroup?.layoutParams
@@ -43,7 +43,22 @@ class ViewGroupParams {
         }
 
         oldViewGroup?.layoutParams = params
-        oldViewGroup?.animate()?.translationX(transX)?.translationY(transY)
+        oldViewGroup?.x = transX
+        oldViewGroup?.y = transY
+        //oldViewGroup?.animate()?.translationX(transX)?.translationY(transY)
+    }
+
+    fun setViewGroupParam(viewGroup: ViewGroup): ViewGroup {
+        viewGroup.apply {
+            x += groupViewX
+            y += groupViewY
+        }
+        val params = viewGroup.layoutParams
+        params.apply {
+            height = groupViewBottom - groupViewTop
+            width = groupViewRight - groupViewLeft
+        }
+        return viewGroup
     }
 
     fun onRecreateOldViewGroup() {

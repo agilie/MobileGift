@@ -26,7 +26,7 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
     private var grantParent: ViewGroup? = null
     private var viewGroupsParams: ViewGroupParams? = null
     private var childCount: Int = 0
-    private var paramsMap: HashMap<ViewGroup, ViewGroup.LayoutParams> = HashMap()
+    private var paramsMap: HashMap<ViewGroup, ViewGroupParams> = HashMap()
 
     override fun startGravity(context: Context, viewGroup: ViewGroup) {
         onStartGravity(context, viewGroup)
@@ -53,64 +53,26 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
 
         parent = viewGroup
         grantParent = viewGroup.parent as ViewGroup
-        //grantParent?.removeView(viewGroup)
+        grantParent?.removeView(viewGroup)
 
         newGroup = Physics2dViewGroup(context)
 
 
-        val viewsList = getAllChildren(viewGroup)
-        removeAllChildrenFromViewGroup(viewsList)
+        //val viewsList = getAllChildren(viewGroup)
+        //removeAllChildrenFromViewGroup(viewsList)
+        //cloneSimpleView(context, viewsList)
 
-        //initCustomViewGroup(context, viewGroup)
+        initCustomViewGroup(context, viewGroup)
 
-        /*oldViewGroupList.forEach {
+        oldViewGroupList.forEach {
             it.setViewGroupParam()
             contentFrame?.addView(it.oldViewGroup)
-        }*/
+        }
 
         contentFrame?.addView(newGroup, viewGroup.layoutParams)
         grantParent?.addView(contentFrame)
 
         startSensorListener(context)
-    }
-
-    private fun getAllChildren(view: View?): List<View> {
-
-        if (view !is ViewGroup) {
-
-            val viewArrayList = ArrayList<View>()
-            view?.let { viewArrayList.add(it) }
-            return viewArrayList
-        }
-
-        val result = ArrayList<View>()
-
-        (0..view.childCount - 1)
-                .map { view.getChildAt(it) }
-                .forEach {
-                    val viewArrayList = ArrayList<View>()
-                    viewArrayList.add(view)
-                    viewArrayList.addAll(getAllChildren(it))
-                    result.addAll(viewArrayList)
-                }
-
-        return result.distinct()
-    }
-
-    private fun removeAllChildrenFromViewGroup(views: List<View>) {
-
-        views.forEach {
-            if (it is ViewGroup) {
-                paramsMap.put(it, it.layoutParams)
-            } else {
-                val childParent = it.parent as ViewGroup
-                childParent.removeView(it)
-                newGroup?.addView(it,it.layoutParams)
-            }
-        }
-        paramsMap.forEach { t, u ->
-            t.layoutParams = u
-        }
     }
 
 
@@ -130,7 +92,7 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
     private fun initCustomViewGroup(context: Context, viewGroup: View): View {
         if (viewGroup !is ViewGroup) {
             //getOnScreenPosition(viewGroup)
-            Log.d("LOCATION", "viewX= " + viewGroup.x + " viewY= " + viewGroup.y)
+            //Log.d("LOCATION", "viewX= " + viewGroup.x + " viewY= " + viewGroup.y)
             viewGroup.x += oldGroupViewX
             viewGroup.y += oldGroupViewY
             newGroup?.addView(viewGroup)
@@ -160,13 +122,11 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
 
         viewGroupsParams?.let { oldViewGroupList.add(it) }
 
-        /*while (viewGroup.childCount > 0) {
+        while (viewGroup.childCount > 0) {
             val childView = viewGroup.getChildAt(0)
-            if (childView !is ViewGroup){
-                viewGroup.removeView(childView)
-            }
+            viewGroup.removeView(childView)
             initCustomViewGroup(context, childView as View)
-        }*/
+        }
 
         return View(context)
     }
@@ -177,7 +137,7 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
     }
 
     fun getBackOldViewGroup() {
-        //recreateOldViewGroup()
+        recreateOldViewGroup()
 
     }
 
@@ -216,6 +176,71 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
         gravitySensor?.onResumeSensor()
         newGroup?.physics2d?.enablePhysics()
         newGroup?.invalidate()
+    }
+
+
+    private fun getAllChildren(view: View?): List<View> {
+
+        if (view !is ViewGroup) {
+
+            val viewArrayList = ArrayList<View>()
+            view?.let { viewArrayList.add(it) }
+            return viewArrayList
+        }
+
+        val result = ArrayList<View>()
+
+        (0..view.childCount - 1)
+                .map { view.getChildAt(it) }
+                .forEach {
+                    val viewArrayList = ArrayList<View>()
+                    viewArrayList.add(view)
+                    viewArrayList.addAll(getAllChildren(it))
+                    result.addAll(viewArrayList)
+                }
+
+        return result.distinct()
+    }
+
+    private fun removeAllChildrenFromViewGroup(views: List<View>) {
+
+        views.forEach {
+            if (it is ViewGroup) {
+                val viewGroupParams = ViewGroupParams()
+                viewGroupParams.apply {
+                    groupViewBottom = it.bottom
+                    groupViewLeft = it.left
+                    groupViewRight = it.right
+                    groupViewTop = it.top
+                    groupViewX = it.x
+                    groupViewY = it.y
+                    transX = it.translationX
+                    transY = it.translationY
+                }
+                paramsMap.put(it, viewGroupParams)
+            } else {
+                val childParent = it.parent as ViewGroup
+                childParent.removeView(it)
+                newGroup?.addView(it, it.layoutParams)
+            }
+        }
+        paramsMap.forEach { t, u ->
+            u.setViewGroupParam(t)
+        }
+    }
+
+
+    private fun cloneSimpleView(context: Context, views: List<View>) {
+        views.forEach {
+            if (it !is ViewGroup) {
+                it.visibility = View.GONE
+//                val cloneView = it.javaClass.constructors[0].newInstance(context)
+                //View(context)
+                //cloneView.layoutParams = it.layoutParams
+                //cloneView.visibility = View.VISIBLE
+                //newGroup?.addView(cloneView)
+            }
+        }
     }
 }
 
