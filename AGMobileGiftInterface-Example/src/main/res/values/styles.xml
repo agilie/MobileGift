@@ -20,4 +20,5 @@
     <style name="PriceButton" parent="Theme.AppCompat">
         <item name="android:background">@drawable/rounded_ripple</item>
     </style>
+
 </resources>

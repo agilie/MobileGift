@@ -2,6 +2,7 @@ package com.agilie.mobileeastergift.ui
 
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -11,7 +12,7 @@ import com.agilie.mobileeastergift.UsersRVAdapter
 import kotlinx.android.synthetic.main.activity_test.*
 
 
-class SecondTestActivity : android.support.v7.app.AppCompatActivity(), UsersRVAdapter.AddNewUserListener {
+class SecondTestActivity : AppCompatActivity(), UsersRVAdapter.AddNewUserListener {
     lateinit var usersRecyclerView: RecyclerView
     lateinit var userRVAdapter: UsersRVAdapter
 
