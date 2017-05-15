@@ -28,12 +28,12 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener { giftInterfaceImpl.startGravity(this, layout) }
 
         disable_physics.setOnClickListener {
-            giftInterfaceImpl.disablePhysics()
+            giftInterfaceImpl.stopGravity()
         }
 
-        enable_physics.setOnClickListener {
-            giftInterfaceImpl.enablePhysics()
-        }
+//        enable_physics.setOnClickListener {
+//            giftInterfaceImpl.enablePhysics()
+//        }
 
 
         revert.setOnClickListener {

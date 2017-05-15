@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.agilie.agmobilegiftinterface.animation.GiftService
 import com.agilie.agmobilegiftinterface.animation.GiftService.Companion.RES_ID
+import com.agilie.agmobilegiftinterface.gravity.GravityController
+import com.agilie.agmobilegiftinterface.gravity.GravityControllerImpl
 import com.agilie.agmobilegiftinterface.gravity.GravitySensorListener
 import com.agilie.agmobilegiftinterface.gravity.physics.Physics2dViewGroup
 import com.agilie.agmobilegiftinterface.gravity.physics.view.ViewGroupParams
@@ -28,10 +30,6 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
     private var childCount: Int = 0
     private var paramsMap: HashMap<ViewGroup, ViewGroupParams> = HashMap()
 
-    override fun startGravity(context: Context, viewGroup: ViewGroup) {
-        onStartGravity(context, viewGroup)
-    }
-
     override fun shake(view: View) = ShakeBuilder.Builder(view)
 
     override fun show(context: Context, id: Int) {
@@ -39,6 +37,18 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
         Thread().run {
             context.startService(intent)
         }
+    }
+
+    var gravityController: GravityController? = null
+
+    override fun startGravity(context: Context, viewGroup: ViewGroup) {
+        gravityController = GravityControllerImpl(context, viewGroup)
+        gravityController?.start()
+        // onStartGravity(context, viewGroup)
+    }
+
+    override fun stopGravity() {
+        gravityController?.stop()
     }
 
     private fun onStartGravity(context: Context, viewGroup: ViewGroup) {

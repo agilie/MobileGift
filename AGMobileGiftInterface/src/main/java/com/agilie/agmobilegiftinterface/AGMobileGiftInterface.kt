@@ -13,4 +13,5 @@ interface AGMobileGiftInterface {
     fun shake(view: View): ShakeBuilder.Builder
 
     fun startGravity(context: Context, viewGroup: ViewGroup)
+    fun stopGravity()
 }
