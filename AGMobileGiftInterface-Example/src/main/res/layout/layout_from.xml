@@ -3,43 +3,37 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layoutFrom"
+    style="@style/ConcreteOptionsRelativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    android:background="@color/white">
+    android:layout_height="60dp">
 
     <ImageView
-        android:id="@+id/imageFrom"
+        android:id="@+id/fromImage"
+        style="@style/MenuOptionIconImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/image_margin_start"/>
+        android:background="@drawable/from_icon"/>
 
     <TextView
-        android:id="@+id/textFrom"
+        android:id="@+id/fromText"
+        style="@style/MenuOptionNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/menu_name_margin_start"
+        android:layout_toEndOf="@id/fromImage"
         android:text="FROM"/>
 
 
     <TextView
-        android:id="@+id/textFromValue"
+        android:id="@+id/fromValueText"
+        style="@style/MenuOptionValueTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/concrete_text_margin_end"
         android:text="263 Maggio Haven"/>
 
     <ImageView
-        android:id="@+id/imageFromArrow"
+        android:id="@+id/arrowFromImage"
+        style="@style/ArrowImageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/image_margin_start"/>
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

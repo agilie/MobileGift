@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
     <RelativeLayout
         android:id="@+id/secondActivity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/background">
+
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                                           android:id="@+id/toolbar"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="?actionBarSize">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SCHEDULE A RIDE"/>
+        </android.support.v7.widget.Toolbar>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/usersRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
 
         <LinearLayout
@@ -42,11 +58,10 @@
         <HorizontalScrollView
             android:id="@+id/hscroll"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@id/layoutMenu"
             android:layout_marginTop="@dimen/down_menu_horizontal_scroll_view_margin_top"
             android:scrollbars="none">
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -55,14 +70,9 @@
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/layoutLuggage"
+                    style="@style/DownMenuCardView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/down_menu_margin_left"
-                    android:innerRadius="@dimen/card_view_inner_radius"
-                    app:cardCornerRadius="@dimen/card_view_card_corner_radius"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    app:cardPreventCornerOverlap="true"
                     >
 
                     <RelativeLayout
@@ -74,7 +84,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:background="@mipmap/luggage"/>
+                            android:background="@drawable/luggage"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -88,16 +98,10 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/layoutPets"
+                    android:id="@+id/petsLayout"
+                    style="@style/DownMenuCardView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/down_menu_margin_left"
-                    android:innerRadius="@dimen/card_view_inner_radius"
-                    app:cardCornerRadius="@dimen/card_view_card_corner_radius"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-
-                    app:cardPreventCornerOverlap="true"
                     >
 
                     <RelativeLayout
@@ -110,7 +114,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:background="@mipmap/pets"/>
+                            android:background="@drawable/pets"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -124,15 +128,10 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/layoutWheelchair"
+                    android:id="@+id/wheelchairLayout"
+                    style="@style/DownMenuCardView"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/down_menu_margin_left"
-                    android:innerRadius="@dimen/card_view_inner_radius"
-                    app:cardCornerRadius="@dimen/card_view_card_corner_radius"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    app:cardPreventCornerOverlap="true">
+                    android:layout_height="wrap_content">
 
                     <RelativeLayout
                         android:layout_width="@dimen/down_menu_width"
@@ -143,7 +142,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:background="@mipmap/wheelchair"/>
+                            android:background="@drawable/wheelchair"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -156,15 +155,11 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/layoutBabySeat"
+                    android:id="@+id/babySeatLayout"
+                    style="@style/DownMenuCardView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/down_menu_margin_left"
-                    android:innerRadius="@dimen/card_view_inner_radius"
-                    app:cardCornerRadius="@dimen/card_view_card_corner_radius"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    app:cardPreventCornerOverlap="true">
+                    android:layout_marginEnd="@dimen/down_menu_margin_side">
 
                     <RelativeLayout
                         android:layout_width="@dimen/down_menu_width"
@@ -175,13 +170,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:background="@mipmap/baby_seat"/>
+                            android:background="@drawable/baby_seat"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/babyCarSeatImage"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginEnd="@dimen/down_menu_margin_side"
                             android:layout_marginTop="@dimen/down_menu_image_name_margin_top"
                             android:text="Baby car seat"/>
                     </RelativeLayout>
@@ -193,15 +189,19 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/priceButton"
             style="@style/PriceButton"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/price_button_paddings_side"
+            android:paddingStart="@dimen/price_button_paddings_side"
             android:layout_below="@id/hscroll"
+            android:layout_marginBottom="40dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="40dp"
-            android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:innerRadius="@dimen/card_view_inner_radius"
-            android:text="$45.00"/>
+            android:text="$45.00"
+            android:textColor="@color/white"/>
 
     </RelativeLayout>
 </ScrollView>

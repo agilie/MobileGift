@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <Button
         android:id="@+id/showRabbit"
         android:layout_width="240dp"
@@ -47,8 +46,8 @@
         android:id="@+id/secondActivityNavigation"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:layout_alignStart="@+id/showRabbit"
         android:layout_below="@id/showFox"
+        android:layout_marginTop="60dp"
         android:text="Second Activity"/>
 </com.agilie.agmobilegiftinterface.gravity.physics.Physics2dRelativeLayout>
