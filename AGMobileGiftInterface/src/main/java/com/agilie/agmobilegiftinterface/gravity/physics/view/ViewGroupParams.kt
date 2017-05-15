@@ -14,10 +14,15 @@ class ViewGroupParams {
     var groupViewY: Float = 0f
     var oldGroupViewX: Float = 0f
     var oldGroupViewY: Float = 0f
+    var transX = 0f
+    var transY = 0f
+    var layoutParams: ViewGroup.LayoutParams? = null
     var oldViewGroup: ViewGroup? = null
-    var viewsList = ArrayList<ViewParams>()
+    var viewsList = ArrayList<View>()
 
     fun setViewGroupParam() {
+
+        //oldViewGroup?.layoutParams = layoutParams
 
         oldViewGroup?.apply {
             top = groupViewTop
@@ -26,8 +31,9 @@ class ViewGroupParams {
             left = groupViewLeft
             oldGroupViewX = groupViewX
             oldGroupViewY = groupViewY
-            x += groupViewX
-            y += groupViewY
+            //x += groupViewX
+            //y += groupViewY
+            Log.d("TAG", "setViewGroupX= " + x + " setViewGroupY= " + y)
         }
 
         val params = oldViewGroup?.layoutParams
@@ -37,17 +43,24 @@ class ViewGroupParams {
         }
 
         oldViewGroup?.layoutParams = params
+        oldViewGroup?.animate()?.translationX(transX)?.translationY(transY)
     }
 
     fun onRecreateOldViewGroup() {
+
+
+        oldViewGroup?.animate()?.translationX(oldGroupViewX)?.translationY(oldGroupViewY)
+
+
+        /*oldViewGroup?.x = oldGroupViewX
+        oldViewGroup?.y = oldGroupViewY*/
+
         Log.d("TAG", "recreateViewGroupX= " + oldViewGroup?.x + " recreateViewGroupY= " + oldViewGroup?.y)
         removeParent(oldViewGroup as View)
         viewsList.forEach {
-            removeParent(it.view)
-            it.setXY()
-            Log.d("TAG", "recreateViewX= " + it.x + " recreateViewY= " + it.y)
-            it.view?.animate()?.rotation(0f)
-            oldViewGroup?.addView(it.view)
+            removeParent(it)
+            it.animate()?.rotation(0f)?.translationX(0f)?.translationY(0f)
+            oldViewGroup?.addView(it)
         }
     }
 

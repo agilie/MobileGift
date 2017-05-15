@@ -5,20 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFF00">
-    <Button
-        android:id="@+id/button"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp"
-        android:text="Start" />
 
-    <Button
-        android:id="@+id/revert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="revert" />
 
     <Button
         android:id="@+id/showRabbit"
@@ -77,7 +64,8 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/liner"
         android:layout_marginTop="11dp"
-        android:background="#000000">
+        android:background="#000000"
+        android:layout_alignParentEnd="true">
 
         <SeekBar
             android:id="@+id/seek_bar"
@@ -98,10 +86,9 @@
             android:id="@+id/disable_physics"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/enable_physics"
+            android:text="disable physics"
             android:layout_below="@+id/enable_physics"
-            android:layout_marginTop="10dp"
-            android:text="disable physics" />
+            android:layout_toEndOf="@+id/revert" />
 
         <Button
             android:id="@+id/enable_physics"
@@ -111,6 +98,22 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="enable physics" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Start"
+            android:layout_below="@+id/enable_physics"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp" />
+
+        <Button
+            android:id="@+id/revert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="revert" />
 
 
     </RelativeLayout>

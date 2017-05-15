@@ -11,8 +11,8 @@ import com.agilie.agmobilegiftinterface.animation.GiftService.Companion.RES_ID
 import com.agilie.agmobilegiftinterface.gravity.GravitySensorListener
 import com.agilie.agmobilegiftinterface.gravity.physics.Physics2dViewGroup
 import com.agilie.agmobilegiftinterface.gravity.physics.view.ViewGroupParams
-import com.agilie.agmobilegiftinterface.gravity.physics.view.ViewParams
 import com.agilie.agmobilegiftinterface.shake.ShakeBuilder
+
 
 class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
 
@@ -25,7 +25,8 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
     private var parent: ViewGroup? = null
     private var grantParent: ViewGroup? = null
     private var viewGroupsParams: ViewGroupParams? = null
-    private var count = 0
+    private var childCount: Int = 0
+    private var paramsMap: HashMap<ViewGroup, ViewGroup.LayoutParams> = HashMap()
 
     override fun startGravity(context: Context, viewGroup: ViewGroup) {
         onStartGravity(context, viewGroup)
@@ -42,28 +43,76 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
 
     private fun onStartGravity(context: Context, viewGroup: ViewGroup) {
         Log.d("TAG", "----------------------------------------------------------")
+        if (!oldViewGroupList.isEmpty()) {
+            return
+        }
+        childCount = viewGroup.childCount
         contentFrame = FrameLayout(context)
         val frameParam = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
         contentFrame?.layoutParams = frameParam
 
         parent = viewGroup
         grantParent = viewGroup.parent as ViewGroup
-        grantParent?.removeView(viewGroup)
+        //grantParent?.removeView(viewGroup)
 
         newGroup = Physics2dViewGroup(context)
 
-        initCustomViewGroup(context, viewGroup)
 
-        oldViewGroupList.forEach {
+        val viewsList = getAllChildren(viewGroup)
+        removeAllChildrenFromViewGroup(viewsList)
+
+        //initCustomViewGroup(context, viewGroup)
+
+        /*oldViewGroupList.forEach {
             it.setViewGroupParam()
             contentFrame?.addView(it.oldViewGroup)
-        }
+        }*/
 
         contentFrame?.addView(newGroup, viewGroup.layoutParams)
         grantParent?.addView(contentFrame)
 
         startSensorListener(context)
     }
+
+    private fun getAllChildren(view: View?): List<View> {
+
+        if (view !is ViewGroup) {
+
+            val viewArrayList = ArrayList<View>()
+            view?.let { viewArrayList.add(it) }
+            return viewArrayList
+        }
+
+        val result = ArrayList<View>()
+
+        (0..view.childCount - 1)
+                .map { view.getChildAt(it) }
+                .forEach {
+                    val viewArrayList = ArrayList<View>()
+                    viewArrayList.add(view)
+                    viewArrayList.addAll(getAllChildren(it))
+                    result.addAll(viewArrayList)
+                }
+
+        return result.distinct()
+    }
+
+    private fun removeAllChildrenFromViewGroup(views: List<View>) {
+
+        views.forEach {
+            if (it is ViewGroup) {
+                paramsMap.put(it, it.layoutParams)
+            } else {
+                val childParent = it.parent as ViewGroup
+                childParent.removeView(it)
+                newGroup?.addView(it,it.layoutParams)
+            }
+        }
+        paramsMap.forEach { t, u ->
+            t.layoutParams = u
+        }
+    }
+
 
     private fun startSensorListener(context: Context) {
         if (gravitySensor == null) {
@@ -80,24 +129,19 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
 
     private fun initCustomViewGroup(context: Context, viewGroup: View): View {
         if (viewGroup !is ViewGroup) {
+            //getOnScreenPosition(viewGroup)
+            Log.d("LOCATION", "viewX= " + viewGroup.x + " viewY= " + viewGroup.y)
             viewGroup.x += oldGroupViewX
             viewGroup.y += oldGroupViewY
             newGroup?.addView(viewGroup)
+            viewGroupsParams?.viewsList?.add(viewGroup)
 
-            val viewParam = ViewParams().apply {
-                view = viewGroup
-                x = viewGroup.x
-                y = viewGroup.y
-            }
-            viewGroupsParams?.viewsList?.add(viewParam)
-
-            Log.d("TAG", "newViewX= " + viewGroup.x + " newViewY= " + viewGroup.y)
             return viewGroup
         }
-
         oldGroupViewX = viewGroup.x
         oldGroupViewY = viewGroup.y
 
+        //getOnScreenPosition(viewGroup)
         Log.d("TAG", "groupViewX= " + oldGroupViewX + " groupViewY= " + oldGroupViewY)
 
         viewGroupsParams = ViewGroupParams()
@@ -109,42 +153,38 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
             groupViewTop = viewGroup.top
             groupViewX = viewGroup.x
             groupViewY = viewGroup.y
+            transX = viewGroup.translationX
+            transY = viewGroup.translationY
+            layoutParams = viewGroup.layoutParams
         }
 
         viewGroupsParams?.let { oldViewGroupList.add(it) }
 
-        while (viewGroup.childCount > 0) {
+        /*while (viewGroup.childCount > 0) {
             val childView = viewGroup.getChildAt(0)
-            //Log.d("TAG", "oldViewX= " + childView.x + " oldViewY= " + childView.y)
-            viewGroup.removeView(childView)
+            if (childView !is ViewGroup){
+                viewGroup.removeView(childView)
+            }
             initCustomViewGroup(context, childView as View)
-        }
+        }*/
 
         return View(context)
     }
 
     fun disablePhysics() {
         newGroup?.physics2d?.disablePhysics()
-        //newGroup = null
         gravitySensor?.onStopSensor()
     }
 
     fun getBackOldViewGroup() {
-        clearAllViewsValue()
-        recreateOldViewGroup()
-        grantParent?.addView(parent)
-    }
+        //recreateOldViewGroup()
 
-    private fun clearAllViewsValue() {
-        /*for (i in 0..newGroup?.childCount!! - 1) {
-            newGroup?.getChildAt(i)?.animate()?.
-                    translationY(0f)?.
-                    translationX(0f)?.
-                    rotation(0f)
-        }*/
     }
 
     private fun recreateOldViewGroup() {
+        if (oldViewGroupList.isEmpty()) {
+            return
+        }
         Log.d("TAG", "---------------------------------------------")
         val parentViews = oldViewGroupList[0].viewsList
         oldViewGroupList.removeAt(0)
@@ -153,21 +193,23 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
             Log.d("TAG", "parentX= " + x + " parentY= " + y)
             removeAllViews()
             parentViews.forEach {
-                it.setXY()
-                val viewsParent = it.view?.parent as ViewGroup
-                viewsParent.removeView(it.view)
-                Log.d("TAG", "recreateViewX= " + it.x + " recreateViewY= " + it.y)
-                addView(it.view)
+                it.animate()?.rotation(0f)?.translationX(0f)?.translationY(0f)
+                val viewsParent = it.parent as ViewGroup
+                viewsParent.removeView(it)
+                addView(it)
             }
             oldViewGroupList.forEach {
 
                 it.onRecreateOldViewGroup()
-                addView(it.oldViewGroup, it.oldViewGroup?.layoutParams)
+                addView(it.oldViewGroup)
             }
         }
+        grantParent?.addView(parent)
+
         oldViewGroupList.clear()
         viewGroupsParams = null
         newGroup = null
+        contentFrame = null
     }
 
     fun enablePhysics() {
