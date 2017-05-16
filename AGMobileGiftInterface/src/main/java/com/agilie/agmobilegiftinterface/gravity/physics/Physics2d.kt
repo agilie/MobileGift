@@ -18,6 +18,9 @@ class Physics2d {
         val WORLD_Y = 0.0f
         val PIXELS_METR = 50f
         val BOUND_SIZE = 0f
+        val FILTER = 1f
+        val GRAVITY_SCALE = 1
+        val ACCELERATION = 5
     }
 
     private val viewGroup: ViewGroup
@@ -25,10 +28,8 @@ class Physics2d {
     private val bodies = ArrayList<Body>()
     private var enablePhysics = true
     private var density: Float
-    private var width = 500
-    private var height = 500
-    private val filter = 0.8f
-    private val gravityScale = 1
+    private var width = 0
+    private var height = 0
 
     constructor(viewGroup: ViewGroup) {
         this.viewGroup = viewGroup
@@ -39,7 +40,7 @@ class Physics2d {
         enablePhysics = true
     }
 
-    fun disablePhysics(){
+    fun disablePhysics() {
         enablePhysics = false
         viewGroup.invalidate()
     }
@@ -58,8 +59,8 @@ class Physics2d {
         }
         world?.step(FRAME_TIME, VELOCITY, POSITION)
         for (i in 0..viewGroup.childCount - 1) {
-            var view = viewGroup.getChildAt(i)
-            var body = view.getTag(R.id.physics_tag)
+            val view = viewGroup.getChildAt(i)
+            val body = view.getTag(R.id.physics_tag)
 
             if (body != null) {
                 body as Body
@@ -73,7 +74,7 @@ class Physics2d {
         viewGroup.invalidate()
     }
 
-    fun initWorld() {
+    private fun initWorld() {
         world = World(Vec2(WORLD_X, WORLD_Y))
         createTopAndBottomWalls()
         createLeftAndRightWalls()
@@ -180,14 +181,14 @@ class Physics2d {
     private var fx = 0f
     private var fy = 0f
 
-    fun onStartGravity(sensorX: Float, sensorY: Float) {
-        fx = (sensorX * filter + fx * (1 - filter)) * (-gravityScale)
-        fy = (sensorY * filter + fy * (1 - filter)) * gravityScale
+    internal fun onStartGravity(sensorX: Float, sensorY: Float) {
+        fx = (sensorX * FILTER + fx * (1 - FILTER)) * (-GRAVITY_SCALE)
+        fy = (sensorY * FILTER + fy * (1 - FILTER)) * GRAVITY_SCALE
 
         for (i in 0..viewGroup.childCount - 1) {
             var body = viewGroup.getChildAt(i).getTag(R.id.physics_tag)
             if (body != null) {
-                var impulse = Vec2(fx, fy)
+                var impulse = Vec2(fx * ACCELERATION, fy * ACCELERATION)
                 (body as Body).linearVelocity = impulse
             }
         }

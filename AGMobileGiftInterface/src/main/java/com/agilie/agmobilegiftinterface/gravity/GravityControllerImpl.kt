@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Space
-import com.agilie.agmobilegiftinterface.gravity.physics.Physics2dViewGroup
+import com.agilie.agmobilegiftinterface.gravity.physics.view.Physics2dViewGroup
 
 
 /**

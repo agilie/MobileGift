@@ -2,7 +2,6 @@ package com.agilie.mobileeastergift.ui
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.agilie.agmobilegiftinterface.gravity.GravityController
@@ -10,10 +9,10 @@ import com.agilie.agmobilegiftinterface.gravity.GravityControllerImpl
 import com.agilie.mobileeastergift.R
 import com.agilie.mobileeastergift.User
 import com.agilie.mobileeastergift.UsersAdapter
-import kotlinx.android.synthetic.main.activity_test.*
+import kotlinx.android.synthetic.main.activity_gravity.*
 
 
-class SecondTestActivity : AppCompatActivity(), UsersAdapter.AddNewUserListener {
+class GravityActivity : AppCompatActivity(), UsersAdapter.AddNewUserListener {
 
     lateinit var userAdapter: UsersAdapter
     var userList: List<User> = getUsersList()
@@ -21,23 +20,22 @@ class SecondTestActivity : AppCompatActivity(), UsersAdapter.AddNewUserListener 
     var gravityController: GravityController? = null
 
     companion object {
-        fun getCallingIntent(context: android.content.Context) = Intent(context, SecondTestActivity::class.java)
+        fun getCallingIntent(context: android.content.Context) = Intent(context, GravityActivity::class.java)
     }
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_test)
+        setContentView(R.layout.activity_gravity)
 
         userAdapter = UsersAdapter(userList, this, this)
         usersRecyclerView.adapter = userAdapter
 
         prepareActionBar()
 
-        gravityController = GravityControllerImpl(this, rootScrollView)
+        gravityController = GravityControllerImpl(this, root_layout)
     }
 
     override fun addNewUser() {
-        Log.d("testLog", "add new user listener")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.SecondTestActivity"
+            android:name=".ui.GravityActivity"
             android:screenOrientation="portrait">
         </activity>
 

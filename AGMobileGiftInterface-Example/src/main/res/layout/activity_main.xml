@@ -3,25 +3,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/physics_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFF00">
-
-    <Button
-        android:id="@+id/secondActivityNavigation"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="95dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/showRabbit"
-        android:text="Second Activity"/>
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/showRabbit"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/secondActivityNavigation"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="show rabbit"/>
+        android:layout_marginTop="95dp"
+        android:text="show rabbit" />
 
     <Button
         android:id="@+id/showLadyBug"
@@ -29,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/showRabbit"
         android:layout_below="@+id/showRabbit"
-        android:text="show lady-bug"/>
+        android:text="show lady-bug" />
 
     <Button
         android:id="@+id/showFox"
@@ -37,92 +28,24 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/showLadyBug"
         android:layout_below="@+id/showLadyBug"
-        android:text="show fox"/>
-
-    <LinearLayout
-        android:id="@+id/liner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/relativeLayout"
-        android:layout_alignStart="@+id/relativeLayout"
+        android:text="show fox" />
+    <Button
+        android:id="@+id/gravity"
         android:layout_below="@+id/showFox"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="33dp"
-        android:background="@color/colorPrimaryDark">
-
-        <android.support.v7.widget.AppCompatCheckBox
-            android:id="@+id/start"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/button"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="16dp"
-            android:text="Enable physics" />
+        android:layout_width="240dp"
+        android:layout_alignEnd="@id/showFox"
+        android:text="start gravity activity"
+        android:layout_height="wrap_content" />
 
 
-
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <Button
+        android:id="@+id/shake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/liner"
-        android:layout_marginTop="11dp"
-        android:background="#000000"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
+        android:text="Shake My View" />
 
-        <SeekBar
-            android:id="@+id/seek_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="301dp" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/seek_bar"
-            android:text="text" />
-
-        <Button
-            android:id="@+id/disable_physics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="disable physics"
-            android:layout_below="@+id/enable_physics"
-            android:layout_toEndOf="@+id/revert" />
-
-        <Button
-            android:id="@+id/enable_physics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="enable physics" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="Start"
-            android:layout_below="@+id/enable_physics"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp" />
-
-        <Button
-            android:id="@+id/revert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="revert" />
-
-
-    </RelativeLayout>
 
 </RelativeLayout>
