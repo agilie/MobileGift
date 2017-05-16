@@ -29,23 +29,13 @@
         android:layout_alignEnd="@+id/showLadyBug"
         android:layout_below="@+id/showLadyBug"
         android:text="show fox" />
+
     <Button
         android:id="@+id/gravity"
-        android:layout_below="@+id/showFox"
         android:layout_width="240dp"
-        android:layout_alignEnd="@id/showFox"
-        android:text="start gravity activity"
-        android:layout_height="wrap_content" />
-
-
-    <Button
-        android:id="@+id/shake"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="21dp"
-        android:text="Shake My View" />
-
+        android:layout_alignEnd="@id/showFox"
+        android:layout_below="@+id/showFox"
+        android:text="start gravity activity" />
 
 </RelativeLayout>

@@ -1,7 +1,6 @@
 package com.agilie.agmobilegiftinterface.gravity
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -17,7 +16,13 @@ import com.agilie.agmobilegiftinterface.gravity.physics.view.Physics2dViewGroup
  *  3) Save all views from all viewGroups
  *  4) Add all views from all viewGroups to PhysicsLayout
  *  5) Set proper coordinates for views added to the PhysicsLayout
- *
+ *  6) Add StubView space on root layout
+ *  7) Start SensorListener
+ *  On Stop:
+ *  1) Stop Sensor
+ *  2) Remove StubView
+ *  3) Return back our views to initial Parents
+ *  4) Remove physics layout and wrapper layout
  */
 class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : GravityController {
 
