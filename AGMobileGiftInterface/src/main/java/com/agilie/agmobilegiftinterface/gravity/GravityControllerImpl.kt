@@ -25,7 +25,7 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : Gr
     var wrapperFrameLayout: FrameLayout? = null
     var physicsLayout: Physics2dViewGroup? = null
     val viewsHashMap = HashMap<View, ViewInfo>()
-
+    var contentFrameLayout: ViewGroup? = null
     var gravityEnabled = false
 
     init {
@@ -47,6 +47,8 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : Gr
 
         val viewGroupCoordinates = IntArray(2)
         viewGroup.getLocationInWindow(viewGroupCoordinates)
+
+        contentFrameLayout = viewGroup.parent as ViewGroup
 
         wrapperFrameLayout = getRootFrameLayout(context)
         physicsLayout = getPhysics2dViewGroup(context)
@@ -105,13 +107,19 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : Gr
         }
 
         // TODO: remove root wrapper layout
+        removeSelfFromParent(viewGroup)
+        removeSelfFromParent(wrapperFrameLayout as View)
+        contentFrameLayout?.addView(viewGroup)
+
 
         // TODO: remove physics layout
-
+        removeSelfFromParent(physicsLayout!!)
         gravityEnabled = false
     }
 
     /* Private helpers */
+
+
 
     private fun wrapViewGroup(viewGroup: ViewGroup, wrapperViewGroup: ViewGroup) {
         // remove self from parent
