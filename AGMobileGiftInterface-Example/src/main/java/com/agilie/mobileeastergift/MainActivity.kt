@@ -31,31 +31,6 @@ class MainActivity : AppCompatActivity() {
             giftInterfaceImpl.stopGravity()
         }
 
-//        enable_physics.setOnClickListener {
-//            giftInterfaceImpl.enablePhysics()
-//        }
-
-
-        revert.setOnClickListener {
-            giftInterfaceImpl.getBackOldViewGroup()
-        }
-
-        //physics
-        //giftInterfaceImpl.startGravity(this, layout)
-
-        /* enable_physics.setOnCheckedChangeListener { buttonView, isChecked ->
-             if (isChecked) {
-                 layout.physics2d?.enablePhysics(true)
-                 giftInterfaceImpl.startGravity(this, layout)
-             } else {
-                 layout.physics2d?.enablePhysics(false)
-                 for (i in 0..layout.childCount - 1) {
-                     layout.getChildAt(i)
-                             .animate().translationY(0f).translationX(0f).rotation(0f)
-                 }
-             }
-         }*/
-
     }
 }
 

@@ -3,8 +3,8 @@ package com.agilie.agmobilegiftinterface.gravity
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import android.widget.FrameLayout
+import android.widget.Space
 import com.agilie.agmobilegiftinterface.gravity.physics.Physics2dViewGroup
 
 
@@ -20,10 +20,15 @@ import com.agilie.agmobilegiftinterface.gravity.physics.Physics2dViewGroup
  */
 class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : GravityController {
 
+    companion object {
+        val TAG_STUB_VIEW = "TAG_STUB_VIEW_GRAVITYCONTROLLERIMPL"
+    }
+
     private var gravitySensor: GravitySensorListener? = null
 
     var wrapperFrameLayout: FrameLayout? = null
     var physicsLayout: Physics2dViewGroup? = null
+
     val viewsHashMap = HashMap<View, ViewInfo>()
 
     var gravityEnabled = false
@@ -33,12 +38,12 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : Gr
     }
 
     class ViewInfo {
-        var initialParent: ViewParent? = null
+        var initialParent: ViewGroup? = null
+
         var initialLayoutParams: ViewGroup.LayoutParams? = null
         var initialX = 0.0f
         var initialY = 0.0f
         var initialRotation = 0.0f
-
         var globalCoordinates: IntArray? = null
     }
 
@@ -63,8 +68,11 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : Gr
             val coordinates = IntArray(2)
             view.getLocationInWindow(coordinates)
 
+            val parentViewGroup = view.parent as ViewGroup
+
             val viewInfo = ViewInfo()
-            viewInfo.initialParent = view.parent
+            viewInfo.initialParent = parentViewGroup
+
             viewInfo.initialLayoutParams = view.layoutParams
             viewInfo.initialX = view.x
             viewInfo.initialY = view.y
@@ -90,6 +98,8 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : Gr
         if (!gravityEnabled) return
 
         stopSensorListener(physicsLayout!!)
+
+        removeAllStubViews(viewGroup)
 
         // return back our views to initial Parents
         for ((view, viewInfo) in viewsHashMap) {
@@ -143,6 +153,16 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : Gr
         return physics2dViewGroup
     }
 
+    private fun getStubView(context: Context, originalView: View): Space {
+        val spaceStubView = Space(context)
+        spaceStubView.tag = TAG_STUB_VIEW
+        spaceStubView.id = originalView.id
+        spaceStubView.minimumWidth = originalView.width
+        spaceStubView.minimumHeight = originalView.height
+
+        return spaceStubView
+    }
+
     private fun getViewsFromAllViewGroup(view: View): List<View> {
         if (view !is ViewGroup) {
             val list = ArrayList<View>()
@@ -163,8 +183,26 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : Gr
         return viewsList
     }
 
+    private fun removeAllStubViews(view: View) {
+        if (view !is ViewGroup) {
+            if (view.tag == TAG_STUB_VIEW) {
+                removeSelfFromParent(view)
+            }
+            return
+        }
+
+        (0..view.childCount - 1)
+                .map { view.getChildAt(it) }
+                .forEach {
+                    removeAllStubViews(it)
+                }
+    }
+
     private fun wrapChildViews(views: List<View>, wrapperViewGroup: ViewGroup) {
         views.forEach { view ->
+            val spaceStubView = getStubView(context, view)
+            (view.parent as ViewGroup).addView(spaceStubView, view.layoutParams)
+
             removeSelfFromParent(view)
             wrapperViewGroup.addView(view)
         }
