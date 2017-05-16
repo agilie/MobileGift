@@ -116,20 +116,18 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : Gr
             }
         }
 
-        // TODO: remove root wrapper layout
+        // remove physics layout
+        removeSelfFromParent(physicsLayout!!)
+
+        // remove root wrapper layout
         removeSelfFromParent(viewGroup)
-        removeSelfFromParent(wrapperFrameLayout as View)
+        removeSelfFromParent(wrapperFrameLayout!!)
         contentFrameLayout?.addView(viewGroup)
 
-
-        // TODO: remove physics layout
-        removeSelfFromParent(physicsLayout!!)
         gravityEnabled = false
     }
 
     /* Private helpers */
-
-
 
     private fun wrapViewGroup(viewGroup: ViewGroup, wrapperViewGroup: ViewGroup) {
         // remove self from parent
