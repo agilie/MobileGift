@@ -19,8 +19,8 @@ class Physics2d {
         val PIXELS_METR = 50f
         val BOUND_SIZE = 0f
         val FILTER = 1f
-        val GRAVITY_SCALE = 1
-        val ACCELERATION = 5
+        val GRAVITY_SCALE = 2
+        val ACCELERATION = 0.5f
     }
 
     private val viewGroup: ViewGroup
@@ -189,7 +189,7 @@ class Physics2d {
             var body = viewGroup.getChildAt(i).getTag(R.id.physics_tag)
             if (body != null) {
                 var impulse = Vec2(fx * ACCELERATION, fy * ACCELERATION)
-                (body as Body).linearVelocity = impulse
+                (body as Body).world.gravity = impulse
             }
         }
     }

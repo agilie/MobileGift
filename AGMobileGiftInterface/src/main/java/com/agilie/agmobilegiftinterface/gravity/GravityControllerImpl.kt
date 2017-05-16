@@ -1,6 +1,7 @@
 package com.agilie.agmobilegiftinterface.gravity
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -216,7 +217,7 @@ class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : Gr
 
     private fun startSensorListener(context: Context, viewGroup: Physics2dViewGroup) {
         if (gravitySensor == null) {
-            gravitySensor = GravitySensorListener(context)
+            gravitySensor = GravitySensorListener(context, 0.2f, 0.2f, 0)
         }
         gravitySensor?.onResumeSensor()
         gravitySensor?.gravityListener = (object : GravitySensorListener.onGravityListener {
