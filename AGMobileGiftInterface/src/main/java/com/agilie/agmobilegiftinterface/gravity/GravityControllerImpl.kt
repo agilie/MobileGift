@@ -21,7 +21,7 @@ import com.agilie.agmobilegiftinterface.gravity.physics.Physics2dViewGroup
 class GravityControllerImpl(val context: Context, val viewGroup: ViewGroup) : GravityController {
 
     companion object {
-        val TAG_STUB_VIEW = "TAG_STUB_VIEW_GRAVITYCONTROLLERIMPL"
+        val TAG_STUB_VIEW = "TAG_STUB_VIEW_GRAVITY_CONTROLLER_IMPL"
     }
 
     private var gravitySensor: GravitySensorListener? = null

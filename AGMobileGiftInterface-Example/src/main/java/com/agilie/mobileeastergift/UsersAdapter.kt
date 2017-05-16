@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.layout_user.view.*
 
 
-class UsersAdapter(var userList: ArrayList<User>, var addNewUserListener: AddNewUserListener, var context: Context) : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
+class UsersAdapter(var userList: List<User>, var addNewUserListener: AddNewUserListener, var context: Context) : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
     override fun getItemCount() = userList.size
 

@@ -6,7 +6,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 
-class GravitySensorListener(context: Context) : SensorEventListener {
+internal class GravitySensorListener(context: Context) : SensorEventListener {
 
 
     interface onGravityListener {

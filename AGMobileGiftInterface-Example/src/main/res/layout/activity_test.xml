@@ -27,7 +27,7 @@
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/usersRv"
+            android:id="@+id/usersRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbar"
@@ -40,7 +40,7 @@
             android:id="@+id/layoutMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/usersRv"
+            android:layout_below="@id/usersRecyclerView"
             android:layout_marginEnd="100dp"
             android:layout_marginTop="50dp"
             android:orientation="vertical">
