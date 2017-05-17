@@ -1,20 +1,22 @@
-package com.agilie.agmobilegiftinterface.gravity.physics
+package com.agilie.agmobilegiftinterface.gravity.physics.view
 
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
+import android.view.ViewGroup
 import android.widget.RelativeLayout
+import com.agilie.agmobilegiftinterface.gravity.physics.Physics2d
 
-class Physics2dRelativeLayout : RelativeLayout {
+class Physics2dViewGroup : ViewGroup {
 
     var physics2d: Physics2d? = null
 
     constructor(context: Context) : super(context) {
-        init()
+        initPhysics2d()
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init()
+        initPhysics2d()
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -23,7 +25,6 @@ class Physics2dRelativeLayout : RelativeLayout {
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        super.onLayout(changed, l, t, r, b)
         physics2d?.onLayout()
     }
 
@@ -36,7 +37,7 @@ class Physics2dRelativeLayout : RelativeLayout {
         return RelativeLayout.LayoutParams(context, attrs)
     }
 
-    private fun init() {
+    private fun initPhysics2d() {
         setWillNotDraw(false)
         physics2d = Physics2d(this)
     }
