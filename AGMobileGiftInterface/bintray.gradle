@@ -32,8 +32,8 @@ bintray {
 
     configurations = ['archives']
     pkg {
-        repo = 'agilie'
-        name = 'AGMobileGift' //YOUR PACKAGE NAME
+        repo = 'maven'
+        name = 'AGMobile' //YOUR PACKAGE NAME
         desc = 'This library simplifies interaction with GIF images' // YOUR LIBRARY DESCRIPTION
         websiteUrl = 'https://github.com/agilie/AGMobileGift' // YOUR SITE
         vcsUrl = 'https://github.com/agilie/AGMobileGift.git' // YOUR GIT REPO

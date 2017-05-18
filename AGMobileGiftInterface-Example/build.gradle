@@ -38,8 +38,13 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // AGMobileGift
+<<<<<<< HEAD
       compile 'com.agilie.agmobilegift:AGMobileGiftInterface:0.1.0'
     //compile project(':AGMobileGiftInterface')
+=======
+    //compile 'com.agilie.agmobilegift:AGMobileGiftInterface:0.1.0'
+    compile project(':AGMobileGiftInterface')
+>>>>>>> startLogic
 
 
     compile 'com.android.support:appcompat-v7:25.3.1'
