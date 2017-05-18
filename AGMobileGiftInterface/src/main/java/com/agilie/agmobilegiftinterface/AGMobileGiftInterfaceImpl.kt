@@ -1,5 +1,6 @@
 package com.agilie.agmobilegiftinterface
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.View
@@ -17,7 +18,7 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
         }
     }
 
-    override fun shake(view: View) = ShakeBuilder.Builder(view)
+    override fun shake(activity: Activity) = ShakeBuilder.Builder(activity)
 
 }
 

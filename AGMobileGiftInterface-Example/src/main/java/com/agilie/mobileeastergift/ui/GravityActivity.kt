@@ -4,8 +4,10 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.agilie.agmobilegiftinterface.AGMobileGiftInterfaceImpl
 import com.agilie.agmobilegiftinterface.gravity.GravityController
 import com.agilie.agmobilegiftinterface.gravity.GravityControllerImpl
+import com.agilie.agmobilegiftinterface.shake.ShakeBuilder
 import com.agilie.mobileeastergift.R
 import com.agilie.mobileeastergift.User
 import com.agilie.mobileeastergift.UsersAdapter
@@ -18,10 +20,12 @@ class GravityActivity : AppCompatActivity(), UsersAdapter.AddNewUserListener {
     var userList: List<User> = getUsersList()
 
     var gravityController: GravityController? = null
+    var shakeBuilder: ShakeBuilder? = null
 
     companion object {
         fun getCallingIntent(context: android.content.Context) = Intent(context, GravityActivity::class.java)
     }
+
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +37,9 @@ class GravityActivity : AppCompatActivity(), UsersAdapter.AddNewUserListener {
         prepareActionBar()
 
         gravityController = GravityControllerImpl(this, root_layout)
+
+        shakeBuilder = AGMobileGiftInterfaceImpl().shake(this).build()
+
     }
 
     override fun addNewUser() {
@@ -47,6 +54,8 @@ class GravityActivity : AppCompatActivity(), UsersAdapter.AddNewUserListener {
         when (item?.itemId) {
             R.id.action_enable_physics -> gravityController?.start()
             R.id.action_disable_physics -> gravityController?.stop()
+            R.id.action_start_shake -> shakeBuilder?.shakeMyActivity()
+            R.id.action_stop_shake -> shakeBuilder?.stopAnimation()
         }
 
         return super.onOptionsItemSelected(item)
@@ -71,4 +80,5 @@ class GravityActivity : AppCompatActivity(), UsersAdapter.AddNewUserListener {
                 User("Add", R.drawable.add_member)
         )
     }
+
 }

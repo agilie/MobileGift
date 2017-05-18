@@ -38,21 +38,4 @@
         android:layout_below="@+id/showFox"
         android:text="start gravity activity" />
 
-    <Button
-        android:id="@+id/shake"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:text="shake"
-        android:layout_below="@+id/gravity"
-        android:layout_alignStart="@+id/gravity" />
-
-    <Button
-        android:id="@+id/start_shake"
-        android:text="start shake"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp" />
-
 </RelativeLayout>

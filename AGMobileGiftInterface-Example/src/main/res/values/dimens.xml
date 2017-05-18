@@ -22,4 +22,6 @@
     <dimen name="card_view_inner_radius">0dp</dimen>
 
     <dimen name="price_button_paddings_side">80dp</dimen>
+    <dimen name="emotar_size">60dp</dimen>
+    <dimen name="margin_left">13dp</dimen>
 </resources>

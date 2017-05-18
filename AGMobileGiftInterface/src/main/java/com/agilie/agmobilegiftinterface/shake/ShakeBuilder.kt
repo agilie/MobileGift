@@ -3,59 +3,60 @@ package com.agilie.agmobilegiftinterface.shake
 import android.R
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.app.Activity
-import android.support.v4.view.ViewCompat
 import android.view.View
 import android.view.ViewGroup
-import java.util.*
+import android.view.animation.AnticipateOvershootInterpolator
+
+/**
+ *Action Flow:
+ * 1) Shake all activity
+ * - create AnimatorSet for all views
+ * - save AnimatorSet in List
+ * 2) Stop shake
+ * - cancel animation for all views
+ */
 
 class ShakeBuilder() {
 
-    lateinit var view: View
+    lateinit var activity: Activity
         private set
 
-    var activity: Activity? = null
-    val animatorSet = AnimatorSet()
-    val TRANSLATION_X = "translationX"
-    val TRANSLATION_Y = "translationY"
-    val TRANSLATION_Z = "translationZ"
+    var view: View? = null
 
-    private var mDuration: Long? = 1000
-    private var translation: String? = "translationX"
-
+    private var viewsList: List<View>? = null
+    private var animatorList = ArrayList<AnimatorSet>()
+    private var animation = true
 
     private constructor (builder: Builder) : this() {
         view = builder.view
         activity = builder.activity
-        mDuration = builder.mDuration
-        translation = builder.translation
     }
 
     fun shakeMyView() {
-        clear(view)
-        shake()
+        clearViewAnimation(view)
+        shake(view)
     }
 
     fun shakeMyActivity() {
-        val viewsList = getAllChildren(activity?.window?.decorView?.findViewById(R.id.content))
-        for (view in viewsList) {
-            clear(view)
-            this.view = view
-            mDuration = getRandomDuration()
-            setRandomTranslation()
-            shake()
+        if (!animation) {
+            return
         }
+        viewsList = getAllChildren(activity?.window?.decorView?.findViewById(R.id.content))
+        viewsList?.forEach {
+            shake(it)
+        }
+        animation = false
     }
 
-    private fun getRandomDuration() = (1L + ((Random().nextDouble() * (3000L - 1L)))).toLong()
-    private fun getRandomFloat() = Random().nextFloat() * 200 - 100
-
-    private fun setRandomTranslation() {
-        when (Random().nextInt(3)) {
-            0 -> translation = TRANSLATION_Z
-            1 -> translation = TRANSLATION_X
-            2 -> translation = TRANSLATION_Y
+    fun stopAnimation() {
+        animatorList.forEach {
+            it.cancel()
         }
+        clearViewAnimation(view)
+        viewsList?.forEach { clearViewAnimation(it) }
+        animation = true
     }
 
     private fun getAllChildren(view: View?): List<View> {
@@ -72,37 +73,38 @@ class ShakeBuilder() {
                 .map { view.getChildAt(it) }
                 .forEach {
                     val viewArrayList = ArrayList<View>()
-                    viewArrayList.add(view)
                     viewArrayList.addAll(getAllChildren(it))
                     result.addAll(viewArrayList)
                 }
 
         return result.distinct()
+    }
+
+    private fun shake(view: View?) {
+        animatorList.add(createAnimatorSet(view))
 
     }
 
-    private fun shake() {
-        ViewCompat.setPivotX(view, view.measuredWidth / 2.0f)
-        ViewCompat.setPivotY(view, view.measuredHeight / 2.0f)
+    private fun createAnimatorSet(view: View?) =
+            AnimatorSet().apply {
+                play(shakeAnimator(view, "rotation", -5f, 5f, 0f, 100))
+                        .with(shakeAnimator(view, "translate", -5f, 5f, 0f, 100))
+                        .with(shakeAnimator(view, "scaleX", 1f, 1.1f, 1f, 300))
+                        .with(shakeAnimator(view, "scaleY", 1f, 1.1f, 1f, 300))
+                start()
+            }
 
-        when (translation) {
-            TRANSLATION_X, TRANSLATION_Y, TRANSLATION_Z -> Unit
-            else -> translation = TRANSLATION_X
-        }
+    private fun shakeAnimator(view: View?, propertyName: String, v1: Float,
+                              v2: Float, v3: Float,
+                              d: Long) =
+            ObjectAnimator.ofFloat(view, propertyName, v1, v2, v3).apply {
+                repeatCount = ValueAnimator.INFINITE
+                duration = d
+                interpolator = AnticipateOvershootInterpolator()
+            }
 
-        with(animatorSet) {
-            playTogether(
-                    ObjectAnimator.ofFloat(view, translation, 0f, getRandomFloat(), getRandomFloat(),
-                            getRandomFloat(), getRandomFloat(), getRandomFloat(), getRandomFloat(),
-                            getRandomFloat(), getRandomFloat(), 0f)
-            )
-            duration = mDuration!!
-            start()
-        }
-    }
-
-    private fun clear(view: View) {
-        with(view) {
+    private fun clearViewAnimation(view: View?) {
+        view?.apply {
             alpha = 1f
             scaleX = 1f
             scaleY = 1f
@@ -114,33 +116,17 @@ class ShakeBuilder() {
         }
     }
 
+    class Builder(val activity: Activity) {
 
-    class Builder(val view: View) {
-
-        constructor(activity: Activity, view: View) : this(view) {
-            this.activity = activity
+        constructor(activity: Activity, view: View) : this(activity) {
+            this.view = view
         }
 
-        var activity: Activity? = null
+        var view: View? = null
             private set
 
-        var mDuration: Long? = null
-            private set
-        var translation: String? = null
-            private set
-
-        fun setActivity(activity: Activity): Builder {
-            this.activity = activity
-            return this
-        }
-
-        fun setDuration(duration: Long): Builder {
-            this.mDuration = duration
-            return this
-        }
-
-        fun setTranslation(translation: String): Builder {
-            this.translation = translation
+        fun setView(view: View): Builder {
+            this.view = view
             return this
         }
 
