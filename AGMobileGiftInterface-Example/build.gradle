@@ -30,7 +30,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // AGMobileGift
-    //  compile 'com.agilie.agmobilegift:AGMobileGiftInterface:0.0.1'
+    //compile 'com.agilie.agmobilegift:AGMobileGiftInterface:0.1.0'
     compile project(':AGMobileGiftInterface')
 
 
