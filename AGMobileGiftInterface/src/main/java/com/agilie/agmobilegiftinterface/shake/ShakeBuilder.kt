@@ -47,7 +47,7 @@ class ShakeBuilder() {
         }
     }
 
-    private fun getRandomDuration() = (1L + ((Random().nextDouble() * (5000L - 1L)))).toLong()
+    private fun getRandomDuration() = (1L + ((Random().nextDouble() * (3000L - 1L)))).toLong()
     private fun getRandomFloat() = Random().nextFloat() * 200 - 100
 
     private fun setRandomTranslation() {
