@@ -18,6 +18,7 @@ Our library helps you achieve the desired result in an easy way with as little l
 ### How does it work?
 
 Gifs:
+
 After an animated picture has been played, the controller managing it closes. And if you want to add a new image, just put it into the project and provide the GIF path as parameter and call method *show*. 
 
 ````kotlin
@@ -64,7 +65,7 @@ Add rependency in your `.pom` file:
 <dependency>
   <groupId>com.agilie.agmobilegift</groupId>
   <artifactId>AGMobileGiftInterface</artifactId>
-  <version>0.0.1</version>
+  <version>0.1.0</version>
   <type>pom</type>
 </dependency>
 ````
