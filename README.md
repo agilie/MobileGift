@@ -45,7 +45,7 @@ gravityController.stop()
 We’ve used this library when working on Easter greeting program. Quite simple, it has 3 GIF images in its reserve (Ladybird, Rabbit, Fox) but can also be supplemented with new ones. 
 We made example to congratulate the use on the day of Easter.
 
-Influenced with [PhysicsLayout](https://github.com/Jawnnypoo/PhysicsLayout) project, we have recently supplemented our library with the new interesting animation. In its updated version, our library captures any interface (screen or view) and throws its UI elements over under the influence of gravity, so that one can move them from side to side obliquely. Call *stop()* method to return all the UI elements to their original location.
+Influenced with [PhysicsLayout](https://github.com/Jawnnypoo/PhysicsLayout) project, we have recently supplemented our library with the new interesting animation. In its updated version, our library captures any interface (screen or view) and throws its UI elements over under the influence of gravity, so that one can move them from side to side obliquely. Gravity depends on device's (accelerometer data)[https://developer.android.com/reference/android/hardware/SensorManager.html]. Call *stop()* method to return all the UI elements to their original location.
 
 This animation can be easily used during the development of any application as an event activated after a specified user action.
 
