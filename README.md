@@ -55,13 +55,13 @@ This animation can be easily used during the development of any application as a
 ### Gradle
 
 Add dependency in your `build.gradle` file:
-````
+````gradle
 compile 'com.agilie.agmobilegift:AGMobileGiftInterface:0.1.0'
 ````
 
 ### Maven
 Add rependency in your `.pom` file:
-````
+````xml
 <dependency>
   <groupId>com.agilie.agmobilegift</groupId>
   <artifactId>AGMobileGiftInterface</artifactId>
@@ -76,8 +76,9 @@ AGMobileGift works on Android API 19+
 
 ## Author
 
-This library is open-sourced by [Agilie Team](https://www.agilie.com)
+This library is open-sourced by [Agilie Team](https://www.agilie.com) <info@agilie.com>
 
 ## License
 
-AGMobileGift is available under the [MIT](https://github.com/agilie/AGMobileGift/blob/dev/LICENSE.txt) license.
+The [MIT](LICENSE.md) License (MIT) Copyright © 2017 [Agilie Team](https://www.agilie.com)
+
