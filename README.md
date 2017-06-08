@@ -76,6 +76,12 @@ Add rependency in your `.pom` file:
 
 AGMobileGift works on Android API 19+
 
+## Troubleshooting
+
+Problems? Check the [Issues](https://github.com/agilie/AGMobileGift/issues) block
+to find the solution or create an new issue that we will fix asap.
+
+
 ## Author
 
 This library is open-sourced by [Agilie Team](https://www.agilie.com) <info@agilie.com>
