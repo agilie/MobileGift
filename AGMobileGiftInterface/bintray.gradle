@@ -19,10 +19,9 @@ artifacts {
     archives sourcesJar
 }
 
-// Bintray https://github.com/bintray/gradle-bintray-plugin
+// Bintray
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
 
 bintray {
     user = properties.getProperty("bintray.user")
@@ -31,7 +30,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = 'maven'
-        name = 'AGMobile' //YOUR PACKAGE NAME
+        name = 'AGMobileGiftInterface' //YOUR PACKAGE NAME
         userOrg = 'agilie'
         //An optional organization name when the repo belongs to one of the user's orgs
         desc = 'This library simplifies interaction with GIF images' // YOUR LIBRARY DESCRIPTION
@@ -42,5 +41,5 @@ bintray {
         publicDownloadNumbers = true
     }
 
-    version = '0.1.0' //YOUR LIBRARY VERSION
+    version = '0.1.1' //YOUR LIBRARY VERSION
 }
