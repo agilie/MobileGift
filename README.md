@@ -5,7 +5,7 @@
 ### GIFs
 <img src="https://cloud.githubusercontent.com/assets/1777595/25045287/34a42230-2134-11e7-8d86-ff64100ad61a.gif" width="32%"> <img src="https://cloud.githubusercontent.com/assets/1777595/25045289/34a52400-2134-11e7-8488-3cbe18b63736.gif" width="32%"> <img src="https://cloud.githubusercontent.com/assets/1777595/25045288/34a42e7e-2134-11e7-98b6-a5d6e6754982.gif" width="32%">
 
-### Gravity                          Shake
+### Gravity
 <img src="https://cloud.githubusercontent.com/assets/1777595/26116081/8e029c0e-3a6a-11e7-9626-2753a9e31b83.gif" width="32%"> <img src="https://user-images.githubusercontent.com/17047537/26974906-1fa4d884-4d26-11e7-9628-770d84ab0e7d.gif" width="32%">
 
 [Agilie Team](https://agilie.com/en/ios-development-services) would like to offer you our new lightweight open-source library called AGMobileGiftInterface.
