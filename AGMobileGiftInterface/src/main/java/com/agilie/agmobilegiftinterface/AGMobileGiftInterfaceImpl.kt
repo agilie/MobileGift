@@ -21,4 +21,3 @@ class AGMobileGiftInterfaceImpl : AGMobileGiftInterface {
     override fun shake(activity: Activity) = ShakeBuilder.Builder(activity)
 
 }
-
