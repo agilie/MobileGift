@@ -27,15 +27,27 @@ We made example to congratulate the use on the day of Easter.
 
 ## Usage
 
-TBD
+### Gradle
+
+Add dependency in your `build.gradle` file:
+````
+compile 'com.agilie.agmobilegift:AGMobileGiftInterface:0.0.1'
+````
+
+### Maven
+Add rependency in your `.pom` file:
+````
+<dependency>
+  <groupId>com.agilie.agmobilegift</groupId>
+  <artifactId>AGMobileGiftInterface</artifactId>
+  <version>0.0.1</version>
+  <type>pom</type>
+</dependency>
+````
 
 ## Requirements
 
 AGMobileGift works on Android API 19+
-
-## Installation
-
-TBD
 
 ## Author
 
