@@ -74,7 +74,7 @@ This animation can be easily used during the development of any application as a
 
 Add dependency in your `build.gradle` file:
 ````gradle
-compile 'com.agilie.agmobilegift:AGMobileGiftInterface:0.1.0'
+compile 'com.agilie.agmobilegift:AGMobileGiftInterface:0.1.1'
 ````
 
 ### Maven
