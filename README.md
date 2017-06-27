@@ -1,5 +1,9 @@
 # AGMobileGift
 
+[ ![Download](https://api.bintray.com/packages/agilie/maven/AGMobileGiftInterface/images/download.svg) ](https://bintray.com/agilie/maven/AGMobileGiftInterface/_latestVersion)
+
+Check the [fox](https://dribbble.com/shots/3459471-Animations-for-GitHub-open-source-libraries) and the [ladybug](https://dribbble.com/shots/3432735-Animations-for-GitHub-open-source-libraries) gifs on Dribbble!
+
 <img src="https://cloud.githubusercontent.com/assets/1777595/25045287/34a42230-2134-11e7-8d86-ff64100ad61a.gif" width="32%"> <img src="https://cloud.githubusercontent.com/assets/1777595/25045289/34a52400-2134-11e7-8488-3cbe18b63736.gif" width="32%"> <img src="https://cloud.githubusercontent.com/assets/1777595/25045288/34a42e7e-2134-11e7-98b6-a5d6e6754982.gif" width="32%">
 
 [Agilie Team](https://agilie.com/en/ios-development-services) would like to offer you our new lightweight open-source library called AGMobileGiftInterface. 
@@ -49,10 +53,25 @@ Add rependency in your `.pom` file:
 
 AGMobileGift works on Android API 19+
 
+## Troubleshooting
+
+Problems? Check the [Issues](https://github.com/agilie/AGMobileGift/issues) block
+to find the solution or create an new issue that we will fix asap.
+
+
 ## Author
 
-This library is open-sourced by [Agilie Team](https://www.agilie.com)
+This library is open-sourced by [Agilie Team](https://www.agilie.com) <info@agilie.com>
+
+## Contributors
+
+- [Eugene Surkov](https://github.com/ukevgen)
+
+## Contact us
+If you have any questions, suggestions or just need a help with web or mobile development, please email us at<br/> <android@agilie.com><br/>
+You can ask us anything from basic to complex questions. <br/>
+We will continue publishing new open-source projects. Stay with us, more updates will follow!<br/>
 
 ## License
 
-AGMobileGift is available under the [MIT](https://github.com/agilie/AGMobileGift/blob/dev/LICENSE.txt) license.
+The [MIT](LICENSE.md) License (MIT) Copyright © 2017 [Agilie Team](https://www.agilie.com)
