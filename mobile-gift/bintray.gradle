@@ -1,6 +1,6 @@
 apply plugin: 'com.jfrog.bintray'
 
-version = '0.0.1' //YOUR LIBRARY VERSION
+version = '1.0' //YOUR LIBRARY VERSION
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -32,12 +32,13 @@ bintray {
 
     configurations = ['archives']
     pkg {
-        repo = 'Agilie-Team'
-        name = 'AGMobileGift' //YOUR PACKAGE NAME
+        repo = 'maven'
+        name = 'MobileGift' //YOUR PACKAGE NAME
+        userOrg = 'agilie'
         desc = 'This library simplifies interaction with GIF images' // YOUR LIBRARY DESCRIPTION
-        websiteUrl = 'https://github.com/agilie/AGMobileGift' // YOUR SITE
-        vcsUrl = 'https://github.com/agilie/AGMobileGift.git' // YOUR GIT REPO
-        licenses = ["Apache-2.0"] // A LIST OF YOUR LICENCES
+        websiteUrl = 'https://github.com/agilie/MobileGift' // YOUR SITE
+        vcsUrl = 'https://github.com/agilie/MobileGift.git' // YOUR GIT REPO
+        licenses = ["MIT"] // A LIST OF YOUR LICENCES
         publish = true
         publicDownloadNumbers = true
     }

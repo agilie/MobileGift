@@ -35,16 +35,16 @@ We made example to congratulate the use on the day of Easter.
 
 Add dependency in your `build.gradle` file:
 ````
-compile 'com.agilie.agmobilegift:AGMobileGiftInterface:0.0.1'
+compile 'com.agilie:mobile-gift:1.0'
 ````
 
 ### Maven
 Add rependency in your `.pom` file:
 ````
 <dependency>
-  <groupId>com.agilie.agmobilegift</groupId>
-  <artifactId>AGMobileGiftInterface</artifactId>
-  <version>0.0.1</version>
+  <groupId>com.agilie</groupId>
+  <artifactId>mobile-gift</artifactId>
+  <version>1.0</version>
   <type>pom</type>
 </dependency>
 ````
