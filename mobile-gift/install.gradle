@@ -1,0 +1,33 @@
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.agilie' // CREATE A GROUP ID FOR YOUR LIBRARY
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'mobile-gift'
+                groupId 'com.agilie' // CREATE A GROUP ID FOR YOUR LIBRARY
+                artifactId 'mobile-gift' // THE NAME OF YOUR MODULE
+
+                name 'MobileGift' // YOUR LIBRARY NAME
+                description 'This library simplifies interaction with GIF images' // YOUR LIBRARY DESCRIPTION
+                url 'https://github.com/agilie/AGMobileGift' // YOUR SITE
+
+                licenses {
+                    license {
+                        name 'MIT'
+                    }
+                }
+                developers {
+                    developer {
+                    }
+                }
+                scm {
+                    connection 'https://github.com/agilie/MobileGift.git' // YOUR GIT REPO
+                    developerConnection 'https://github.com/agilie/MobileGift.git' // YOUR GIT REPO
+                    url 'https://github.com/agilie/MobileGift' // YOUR SITE
+                }
+            }
+        }
+    }
+}
